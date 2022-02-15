@@ -3,8 +3,7 @@ Set photometry status
 """
 
 import logging
-from tendrils.api import get_api_token, get_request, URLS
-from tendrils.utils import load_config
+from tendrils.utils import get_api_token, get_request, URLS, load_config
 
 
 def is_pipeline():

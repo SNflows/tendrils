@@ -9,9 +9,7 @@ from functools import lru_cache
 from typing import Union, Optional
 from astropy.time import Time
 from astropy.coordinates import SkyCoord
-from tendrils.api import get_api_token, get_request, post_request, URLS
-from tendrils.utils import resolve_date_iso
-
+from tendrils.utils import get_api_token, get_request, URLS, resolve_date_iso, post_request
 
 @lru_cache(maxsize=10)
 def get_target(target: Union[int, str]) -> dict:
@@ -59,8 +57,8 @@ def add_target(name: str,
                coord: SkyCoord,
                redshift: Optional[float] = None,
                redshift_error: Optional[float] = None,
-               discovery_date: Optional[Time, datetime, str] = None,
-               discovery_mag: Optional[float, int] = None,
+               discovery_date: Union[Optional[Time], Optional[datetime], Optional[str]] = None,
+               discovery_mag: Union[Optional[float], Optional[int]] = None,
                host_galaxy: Optional[str] = None,
                ztf: Optional[str] = None,
                sntype: Optional[str] = None,

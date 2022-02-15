@@ -7,7 +7,7 @@ import astropy.units as u
 from astropy.table import Table
 from astropy.time import Time
 from typing import Union, Optional
-from tendrils.api import get_api_token, get_request, URLS
+from tendrils.utils import get_api_token, get_request, URLS
 from enum import Enum
 
 

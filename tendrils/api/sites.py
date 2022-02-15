@@ -5,7 +5,7 @@ For querying site information
 from functools import lru_cache
 import astropy.units as u
 from astropy.coordinates import EarthLocation
-from tendrils.api import get_api_token, get_request, URLS
+from tendrils.utils import get_api_token, get_request, URLS
 from typing import Union
 
 

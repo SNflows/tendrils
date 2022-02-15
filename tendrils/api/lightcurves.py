@@ -5,7 +5,7 @@ Fetch current lightcurve from Flows API.
 import os.path
 import tempfile
 from astropy.table import Table
-from tendrils.api import get_api_token, get_request, URLS
+from tendrils.utils import get_api_token, get_request, URLS
 from typing import Union
 
 

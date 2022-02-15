@@ -13,8 +13,8 @@ from configparser import ConfigParser
 from astropy.table import Table
 from tqdm import tqdm
 
-from tendrils.api import get_api_token, get_request, URLS, get_datafile, post_request
-from tendrils.utils import get_filehash, load_config
+from tendrils.api import get_datafile
+from tendrils.utils import get_api_token, get_request, load_config, get_filehash, post_request, URLS
 
 
 def get_photcache(config: Optional[ConfigParser] = None) -> tuple[str, Optional[tempfile.TemporaryDirectory]]:

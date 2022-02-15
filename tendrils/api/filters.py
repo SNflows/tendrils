@@ -4,7 +4,7 @@ For querying photometric filters.
 
 from functools import lru_cache
 import astropy.units as u
-from tendrils.api import get_api_token, get_request, URLS
+from tendrils.utils import get_api_token, get_request, URLS
 
 
 @lru_cache(maxsize=10)

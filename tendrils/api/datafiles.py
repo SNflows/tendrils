@@ -5,8 +5,7 @@ Functions for accessing flows datafiles from a remote server
 from datetime import datetime
 from functools import lru_cache
 from typing import Union, Optional
-from tendrils.api import get_api_token, get_request, URLS
-
+from tendrils.utils import get_api_token, get_request, URLS
 
 @lru_cache(maxsize=10)
 def get_datafile(fileid: Union[int, str]):
