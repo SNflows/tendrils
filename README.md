@@ -1,5 +1,5 @@
 # tendrils api
-Cosmic `tendrils` is the API endpoint for both FLOWS 
+Cosmic `tendrils` is a fully type annoted Python API endpoint for both FLOWS 
 [pipeline](https://github.com/SNflows/flows/ ) 
 and [project](https://flows.phys.au.dk). 
 
