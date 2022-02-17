@@ -26,13 +26,13 @@ def get_lightcurve(target: Union[int, str]) -> Table:
     # Send query to the Flows API:
     params = {'target': target}
     r = get_request(URLS.lightcurves_url, token=token, params=params)
-
+    text = r.text.replace('str,', 'string,')  # only needed for astropy >=4.3 and < 5.1
     # Create temp directory and save the file into there,
     # then open the file as a Table:
     with tempfile.TemporaryDirectory() as tmpdir:
         tmpfile = os.path.join(tmpdir, 'table.ecsv')
         with open(tmpfile, 'w') as fid:
-            fid.write(r.text)
+            fid.write(text)
 
         tab = Table.read(tmpfile, format='ascii.ecsv')
 

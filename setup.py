@@ -1,11 +1,15 @@
 import setuptools
-
+import sys
+# Workaround for dynamic version reading..
+sys.path[0:0] = ['tendrils']
+from version import version as __version__  # noqa: E402
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+
 setuptools.setup(
     name='tendrils',
-    version="0.0.1",
+    version=__version__,
     author="Emir Karamehmetoglu, Rasmus Handberg",
     author_email="emirkmo@github.com",
     description="Tendrils: API for accessing flows pipeline and data products.",
