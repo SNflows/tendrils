@@ -48,7 +48,15 @@ def get_api_token() -> str:
     return token
 
 
-def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', overwrite:bool = False) -> None:
+def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', overwrite:bool = True) -> None:
+    """
+    For updating FLOWS API token.
+    Args:
+        token (str, optional): FLOWS api token
+        filename (str): filename of config file, defaults to `config.ini`.
+        overwrite (bool): Whether to overwrite the config if the field is not "None".
+        True by default. Set to false if you don't want to overwrite if field is not "None".
+    """
     config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), filename)
     config = configparser.ConfigParser()
     config.read(config_file)
@@ -64,7 +72,15 @@ def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', ove
 
 
 def set_photometry_folders(output: Optional[str] = None, archive_local: Optional[str] = None,
-                           filename: str = 'config.ini', overwrite:bool = False) -> None:
+                           filename: str = 'config.ini', overwrite:bool = True) -> None:
+    """
+    For updating FLOWS photometry output and local archive folders.
+    Args:
+        output (str, optional): path to desired photometry output directory.
+        archive_local (str, optional): path to desired local archive directory.
+        filename (str): default = 'config.ini'. Filename for config file
+        overwrite (bool): Whether to overwrite existing field if field is not "None".
+    """
 
     config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), filename)
     config = configparser.ConfigParser()
@@ -102,10 +118,10 @@ def set_tns_token(api_key: Optional[str] = None, filename: str = 'config.ini', o
 
 
 def create_config(tns:bool = False):
-    set_api_token()
-    set_photometry_folders()
+    set_api_token(overwrite=True)
+    set_photometry_folders(overwrite=True)
     if tns:
-        set_tns_token()
+        set_tns_token(overwrite=True)
 
 
 def copy_from_other_config(filepath: str, filename: str = 'config.ini'):
