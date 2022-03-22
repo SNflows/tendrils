@@ -1,5 +1,5 @@
 # tendrils api
-Cosmic `tendrils` is a fully type annoted Python API endpoint for both FLOWS 
+Cosmic `tendrils` is a fully type annoted Python API wrapper for both FLOWS 
 [pipeline](https://github.com/SNflows/flows/ ) 
 and [project](https://flows.phys.au.dk). 
 
@@ -15,7 +15,7 @@ PYPI: https://pypi.org/project/tendrils/
 
 ### Requirements:
 `astropy, numpy, requests, tqdm`   
-`python >= 3.8`
+`python >= 3.9`
 # Before you begin [IMPORTANT!]
 
 You will need to populate the included template `config.ini` with the right paths and flows API 
