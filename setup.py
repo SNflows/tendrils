@@ -21,7 +21,7 @@ setuptools.setup(
                  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
                  "Operating System :: OS Independent",
                  "Topic :: Scientific/Engineering :: Astronomy"],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     install_requires=['numpy',
                       'astropy',
                       'requests',
