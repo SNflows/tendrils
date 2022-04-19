@@ -33,22 +33,14 @@ def load_config(filename: str = 'config.ini') -> configparser.ConfigParser:
     return config
 
 
-def get_api_token() -> str:
+def clear_config_cache():
     """
-    Get api token from config file or raise.
-    Returns: str = token as a string
-
+    Clear the config cache.
     """
-    # Get API token from config file:
-    config = load_config()
-    token = config.get('api', 'token', fallback=None)
-    if token is None:
-        raise RuntimeError("No API token has been defined")
-
-    return token
+    load_config.cache_clear()
 
 
-def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', overwrite:bool = True) -> None:
+def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', overwrite: bool = True) -> None:
     """
     For updating FLOWS API token.
     Args:
@@ -61,7 +53,7 @@ def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', ove
     config = configparser.ConfigParser()
     config.read(config_file)
 
-    if config.get('api','token') == "None" or overwrite:
+    if config.get('api', 'token') == "None" or overwrite:
         if token is None:
             config['api']['token'] = input('Enter API token to be saved into config:')
         else:
@@ -69,6 +61,39 @@ def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', ove
 
     with open(config_file, 'w') as cfgfile:
         config.write(cfgfile)
+
+    clear_config_cache()
+
+
+def update_api_token() -> str:
+    """
+    Update API token in config file via explicit query.
+    """
+    token = str(input('Tendrils needs your FLOWS API token. Please enter it:'))
+    # We remove spaces from the token to avoid errors.
+    token = token.strip().replace(' ', '')
+    set_api_token(token, overwrite=True)
+    print(f'Token with value {token} set and saved./nIf there is a problem, please run Tendrils again.')
+    return token
+
+
+def get_api_token() -> str:
+    """
+    Get api token from config file or raise.
+    Returns: str = token as a string
+
+    """
+    # Get API token from config file:
+    config = load_config()
+    token = config.get('api', 'token', fallback=None)
+
+    if token is None:
+        raise RuntimeError("No API token has been defined")
+
+    if token.lower() in ['none', 'test', '']:
+        token = update_api_token()
+
+    return token
 
 
 def set_photometry_folders(output: Optional[str] = None, archive_local: Optional[str] = None,
@@ -101,6 +126,8 @@ def set_photometry_folders(output: Optional[str] = None, archive_local: Optional
     with open(config_file, 'w') as cfgfile:
         config.write(cfgfile)
 
+    clear_config_cache()
+
 
 def set_tns_token(api_key: Optional[str] = None, filename: str = 'config.ini', overwrite:bool = False) -> None:
     config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), filename)
@@ -116,12 +143,15 @@ def set_tns_token(api_key: Optional[str] = None, filename: str = 'config.ini', o
     with open(config_file, 'w') as cfgfile:
         config.write(cfgfile)
 
+    clear_config_cache()
+
 
 def create_config(tns:bool = False):
     set_api_token(overwrite=True)
     set_photometry_folders(overwrite=True)
     if tns:
         set_tns_token(overwrite=True)
+    clear_config_cache()
 
 
 def copy_from_other_config(filepath: str, filename: str = 'config.ini'):
@@ -140,3 +170,4 @@ def copy_from_other_config(filepath: str, filename: str = 'config.ini'):
 
     with open(config_file, 'w') as cfgfile:
         config_dest.write(cfgfile)
+    clear_config_cache()
