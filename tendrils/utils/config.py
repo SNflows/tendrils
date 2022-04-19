@@ -73,7 +73,7 @@ def update_api_token() -> str:
     # We remove spaces from the token to avoid errors.
     token = token.strip().replace(' ', '')
     set_api_token(token, overwrite=True)
-    print(f'Token with value {token} set and saved./nIf there is a problem, please run Tendrils again.')
+    print(f'Token with value {token} set and saved.\nIf there is a problem, please run Tendrils again.')
     return token
 
 
@@ -90,7 +90,7 @@ def get_api_token() -> str:
     if token is None:
         raise RuntimeError("No API token has been defined")
 
-    if token.lower() in ['none', 'test', '']:
+    if token.lower() in ['none', 'test', '', 'bad', 'bad_token', 'badtoken']:
         token = update_api_token()
 
     return token
