@@ -43,7 +43,7 @@ After doing any of the above, your config.ini will have your API token, and all 
 
 # Dev
 
-After clonening from the github repo, use the provided pyproject.toml file. Install using `flit` (`pip install flit`):
+After cloning from the github repo, use the provided pyproject.toml file. Install using `flit` (`pip install flit`):
 `flit install --symlink` to install in EDITABLE mode. A legacy `setup.py` is also provided for installing with 
 `pip install -e .` from the root directory. Important, do not upload you `config.ini`! Make sure all values are None
 as in the template from Pypi. We welcome all PRs.
