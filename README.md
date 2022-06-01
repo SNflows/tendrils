@@ -15,7 +15,7 @@ PYPI: https://pypi.org/project/tendrils/
 
 ### Requirements:
 `astropy, numpy, requests, tqdm`   
-`python >= 3.9`
+`python >= 3.10`
 # Before you begin [IMPORTANT!]
 
 You will need to populate the included template `config.ini` with the right paths and flows API 

@@ -40,7 +40,7 @@ def clear_config_cache():
     load_config.cache_clear()
 
 
-def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', overwrite: bool = True) -> None:
+def set_api_token(token: Optional[str] = None, filename: Optional[str] = 'config.ini', overwrite: bool = True) -> None:
     """
     For updating FLOWS API token.
     Args:
@@ -55,9 +55,8 @@ def set_api_token(token: Optional[str] = None, filename: str = 'config.ini', ove
 
     if config.get('api', 'token') == "None" or overwrite:
         if token is None:
-            config['api']['token'] = input('Enter API token to be saved into config:')
-        else:
-            config['api']['token'] = token
+            token =  input('Enter API token to be saved into config:')
+        config.set('api','token', token)
 
     with open(config_file, 'w') as cfgfile:
         config.write(cfgfile)
