@@ -65,7 +65,7 @@ def tns_search(coord: Optional[SkyCoord] = None, radius: u.Quantity = 3 * u.arcs
     """
 
     # API key for Bot
-    tnsconf = _load_tns_config()
+    tnsconf = load_tns_config()
 
     # change json_list to json format
     json_file = {'radius': radius.to('arcsec').value, 'units': 'arcsec', 'objname': objname,
@@ -101,7 +101,7 @@ def tns_get_obj(name:str) -> Optional[dict]:
     """
 
     # API key for Bot
-    tnsconf = _load_tns_config()
+    tnsconf = load_tns_config()
 
     # construct the list of (key,value) pairs
     headers = {'user-agent': tnsconf['user-agent']}
@@ -172,7 +172,7 @@ def tns_getnames(months: Optional[int] = None, date_begin: Optional[DateType] = 
         logger.warning('Months limit restricts days_begin, consider increasing limit_months.')
 
     # API key for Bot
-    tnsconf = _load_tns_config()
+    tnsconf = load_tns_config()
 
     # Parameters for query:
     params = {'discovered_period_value': months,  # Reported Within The Last
