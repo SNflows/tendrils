@@ -42,7 +42,8 @@ class RemoteUrls:
     def update(self, new: Optional[dict] = None) -> None:
         for key, value in new.items():
             if hasattr(self, key):
-                setattr(self, key, value)
+                if value != 'None':
+                    setattr(self, key, value)
             else:
                 warn(f'{key} was given with value: {value} but is not one of {asdict(self).keys()}')
 

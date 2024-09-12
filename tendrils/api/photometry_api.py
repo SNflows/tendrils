@@ -29,6 +29,7 @@ def get_photcache(config: Optional[ConfigParser] = None) -> tuple[str, Optional[
     # Use config if given:
     if config is not None:
         photcache = config.get('api', 'photometry_cache', fallback=None)
+        photcache = photcache if photcache != 'None' else None
     else:
         photcache = None
 

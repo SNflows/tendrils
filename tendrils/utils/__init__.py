@@ -9,4 +9,4 @@ from .time import resolve_date_iso
 from .ztf import download_ztf_photometry, query_ztf_id
 from .tns import tns_search, tns_getnames, tns_get_obj, TNSConfigError, load_tns_config
 
-URLS = urls()
+URLS = urls_from_config()
