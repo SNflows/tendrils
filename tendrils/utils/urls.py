@@ -104,7 +104,7 @@ def get_request(url: str, token: str = None, params: Optional[dict] = None,
 
     config = load_config()
     verify_ssl = config.getboolean('URL', 'verify_ssl', fallback=True)
-    response = requests.get(url, params=params, headers=headers, verify_ssl=verify_ssl)
+    response = requests.get(url, params=params, headers=headers, verify=verify_ssl)
     response.raise_for_status()
     return response
 
