@@ -24,6 +24,7 @@ class RemoteUrls:
     filters_url: str = 'filters.php'
     lightcurves_url: str = 'lightcurve.php'
     targets_post_url: str = 'targets_add.php'
+    verify_ssl: str = True
 
     # def __post_init__(self):
     #    self.urls = [field.name for field in ]
