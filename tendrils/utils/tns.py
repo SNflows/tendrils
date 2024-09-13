@@ -36,6 +36,7 @@ def load_tns_config() -> dict[str, str]:
     tns_bot_name = config.get('TNS', 'bot_name', fallback='AUFLOWS_BOT')
     tns_user_id = config.getint('TNS', 'user_id', fallback=None)
     tns_user_name = config.get('TNS', 'user_name', fallback=None)
+    tns_user_name = tns_user_name if tns_user_name != 'None' else None
 
     if tns_user_id and tns_user_name:
         logger.debug('Using TNS credentials: user=%s', tns_user_name)

@@ -101,7 +101,9 @@ def get_request(url: str, token: str = None, params: Optional[dict] = None,
     elif token is not None:
         headers['Authorization'] = 'Bearer ' + token
 
-    response = requests.get(url, params=params, headers=headers)
+    config = load_config()
+    verify_ssl = config.getboolean('URL', 'verify_ssl', fallback=True)
+    response = requests.get(url, params=params, headers=headers, verify_ssl=verify_ssl)
     response.raise_for_status()
     return response
 
