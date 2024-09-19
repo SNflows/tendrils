@@ -32,8 +32,8 @@ def load_tns_config() -> dict[str, str]:
     if api_key is None:
         raise TNSConfigError("No TNS API-KEY has been defined in config")
 
-    tns_bot_id = config.getint('TNS', 'bot_id', fallback=93222)
-    tns_bot_name = config.get('TNS', 'bot_name', fallback='AUFLOWS_BOT')
+    tns_bot_id = config.getint('TNS', 'bot_id', fallback=191396)
+    tns_bot_name = config.get('TNS', 'bot_name', fallback='AUFLOWS_BOT2')
     tns_user_id = config.getint('TNS', 'user_id', fallback=None)
     tns_user_name = config.get('TNS', 'user_name', fallback=None)
     tns_user_name = tns_user_name if tns_user_name != 'None' else None
