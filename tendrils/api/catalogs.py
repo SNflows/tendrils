@@ -69,7 +69,7 @@ def create_catalog_table(jsn: dict) -> dict:
         tab['z_mag'].description = 'z magnitude'
 
         # Add some meta-data to the table as well:
-        tab.meta['targetid'] = int(dict_tables['target']['targetid'])
+        tab.meta['targetid'] = int(dict_tables['target']['targetid'][0])
 
         dict_tables[table_name] = tab
         return dict_tables
