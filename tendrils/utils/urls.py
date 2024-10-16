@@ -24,7 +24,7 @@ class RemoteUrls:
     filters_url: str = 'filters.php'
     lightcurves_url: str = 'lightcurve.php'
     targets_post_url: str = 'targets_add.php'
-    verify_ssl: str = True
+    verify_ssl: bool = True
 
     # def __post_init__(self):
     #    self.urls = [field.name for field in ]
@@ -50,6 +50,8 @@ class RemoteUrls:
 
     def make_convenient(self) -> None:
         for key, value in asdict(self).items():
+            if 'verify_ssl' in key:
+                continue
             if 'base_url' not in key:
                 setattr(self, key, self.base_url + value)
 
