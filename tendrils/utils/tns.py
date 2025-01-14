@@ -113,17 +113,16 @@ def tns_get_obj(name:str) -> Optional[dict]:
     res = requests.post(url_tns_api + '/object', files=get_data, headers=headers)
     res.raise_for_status()
     parsed = res.json()
-    data = parsed['data']
 
-    if 'reply' in data:
-        reply = data['reply']
-        if not reply:
-            return None
-        if 'objname' not in reply:  # Bit of a cheat, but it is simple and works
+    # See "Feedback messages" at
+    # https://www.wis-tns.org/sites/default/files/api/tns2_manuals/TNS2.0_APIs_manual.pdf
+    if parsed['id_code'] == 200:
+        data = parsed['data']
+        if 'objname' not in data:  # Bit of a cheat, but it is simple and works
             return None
 
-        reply['internal_names'] = [name.strip() for name in reply['internal_names'].split(',') if name.strip()]
-        return reply
+        data['internal_names'] = [name.strip() for name in data['internal_names'].split(',') if name.strip()]
+        return data
     return None
 
 
